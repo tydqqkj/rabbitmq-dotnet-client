@@ -8,6 +8,8 @@ indent_style = space
 indent_size = 4
 
 [*.cs]
+charset = utf-8-bom
+
 # New line preferences
 csharp_new_line_before_open_brace = all
 csharp_new_line_before_else = true
@@ -26,7 +28,8 @@ csharp_indent_switch_labels = true
 csharp_indent_labels = one_less_than_current
 
 # Modifier preferences
-csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async:suggestion
+# https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0036
+csharp_preferred_modifier_order = public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async
 
 # avoid this. unless absolutely necessary
 dotnet_style_qualification_for_field = false:suggestion
