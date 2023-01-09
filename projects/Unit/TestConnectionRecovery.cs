@@ -122,9 +122,10 @@ namespace RabbitMQ.Client.Unit
 
             PublishMessagesWhileClosingConn(queueName);
 
-            Wait(sl);
-            Wait(rl);
-            Wait(allMessagesSeenLatch);
+            var w = TimeSpan.FromSeconds(30);
+            Wait(sl, w);
+            Wait(rl, w);
+            Wait(allMessagesSeenLatch, w);
         }
 
         [Fact]
@@ -1147,7 +1148,7 @@ namespace RabbitMQ.Client.Unit
                     {
                         if (i == _closeAtCount)
                         {
-                            Task.Run(() => CloseConnection(_conn));
+                            CloseConnection(_conn);
                         }
                         publishingModel.BasicPublish(string.Empty, queueName, _messageBody);
                     }
